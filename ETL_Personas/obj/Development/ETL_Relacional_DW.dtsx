@@ -1,0 +1,2734 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="10/4/2026 11:02:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LENOVO-THINKBOO"
+  DTS:CreatorName="LENOVO-THINKBOO\user"
+  DTS:DTSID="{5D2D1614-223F-483C-982B-84308DD8241A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="9226"
+  DTS:ObjectName="ETL_Relacional_DW"
+  DTS:PackageType="5"
+  DTS:VersionBuild="59"
+  DTS:VersionGUID="{2EC0CDC3-1EEF-4A8A-824A-F2DF8F019A7B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+      DTS:ObjectName="CM_SQL_PersonasDW">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=(local)\SQLDEV;Initial Catalog=PersonasDW;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-ETL_Relacional_DW;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT_01_Cargar_DimTiempo"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5CF1AD32-4DEB-4E70-99DC-D3B4DF4954E4}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_01_Cargar_DimTiempo"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST_DimTiempo"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dw].[DimTiempo]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].Columns[TiempoKey]"
+                      cachedDataType="i4"
+                      cachedName="TiempoKey"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[TiempoKey]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[TiempoKey]" />
+                    <inputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].Columns[Fecha]"
+                      cachedDataType="dbDate"
+                      cachedName="Fecha"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Fecha]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Fecha]" />
+                    <inputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].Columns[Anio]"
+                      cachedDataType="i4"
+                      cachedName="Anio"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Anio]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Anio]" />
+                    <inputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].Columns[Mes]"
+                      cachedDataType="i4"
+                      cachedName="Mes"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Mes]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Mes]" />
+                    <inputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].Columns[NombreMes]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="NombreMes"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[NombreMes]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[NombreMes]" />
+                    <inputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].Columns[Trimestre]"
+                      cachedDataType="i4"
+                      cachedName="Trimestre"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Trimestre]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Trimestre]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[TiempoKey]"
+                      dataType="i4"
+                      name="TiempoKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Fecha]"
+                      dataType="dbDate"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Anio]"
+                      dataType="i2"
+                      name="Anio" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Mes]"
+                      dataType="ui1"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[NombreMes]"
+                      dataType="wstr"
+                      length="20"
+                      name="NombreMes" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input].ExternalColumns[Trimestre]"
+                      dataType="ui1"
+                      name="Trimestre" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_Fechas_Depuradas"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT
+    CONVERT(INT, CONVERT(CHAR(8), v.FechaEncuesta, 112)) AS TiempoKey,
+    v.FechaEncuesta AS Fecha,
+    YEAR(v.FechaEncuesta) AS Anio,
+    MONTH(v.FechaEncuesta) AS Mes,
+    CHOOSE(
+        MONTH(v.FechaEncuesta),
+        N'ENERO', N'FEBRERO', N'MARZO', N'ABRIL',
+        N'MAYO', N'JUNIO', N'JULIO', N'AGOSTO',
+        N'SEPTIEMBRE', N'OCTUBRE', N'NOVIEMBRE', N'DICIEMBRE'
+    ) AS NombreMes,
+    DATEPART(QUARTER, v.FechaEncuesta) AS Trimestre
+FROM PersonasETL.modelo.vw_DatosDepuradosDW AS v
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM PersonasDW.dw.DimTiempo AS d
+    WHERE d.Fecha = v.FechaEncuesta
+);</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[TiempoKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[TiempoKey]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[TiempoKey]"
+                      name="TiempoKey"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Fecha]"
+                      name="Fecha"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Anio]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Anio]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Anio]"
+                      name="Anio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Mes]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Mes]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Mes]"
+                      name="Mes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[NombreMes]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[NombreMes]"
+                      length="10"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[NombreMes]"
+                      name="NombreMes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Trimestre]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Trimestre]"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].Columns[Trimestre]"
+                      name="Trimestre"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[TiempoKey]"
+                      dataType="i4"
+                      name="TiempoKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Fecha]"
+                      dataType="dbDate"
+                      name="Fecha" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Anio]"
+                      dataType="i4"
+                      name="Anio" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Mes]"
+                      dataType="i4"
+                      name="Mes" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[NombreMes]"
+                      dataType="wstr"
+                      length="10"
+                      name="NombreMes" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output].ExternalColumns[Trimestre]"
+                      dataType="i4"
+                      name="Trimestre" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[TiempoKey]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[TiempoKey]"
+                      name="TiempoKey" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Fecha]"
+                      name="Fecha" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Anio]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Anio]"
+                      name="Anio" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Mes]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Mes]"
+                      name="Mes" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[NombreMes]"
+                      dataType="wstr"
+                      length="10"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[NombreMes]"
+                      name="NombreMes" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Trimestre]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[Trimestre]"
+                      name="Trimestre" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_01_Cargar_DimTiempo.Paths[OLE DB Source Output]"
+              endId="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DFT_06_Cargar_FactObservacion_Lookups"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{9809CAB4-D371-4E4F-AC20-E7F5A4CCEF8D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT_06_Cargar_FactObservacion_Lookups"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST_FactObservacion"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dw].[FactObservacion]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[IngresoMensual]"
+                      cachedDataType="numeric"
+                      cachedName="IngresoMensual"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[IngresoMensual]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IngresoMensual]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[GastoMensual]"
+                      cachedDataType="numeric"
+                      cachedName="GastoMensual"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[GastoMensual]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[GastoMensual]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[BalanceMensual]"
+                      cachedDataType="numeric"
+                      cachedName="BalanceMensual"
+                      cachedPrecision="19"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[BalanceMensual]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[BalanceMensual]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[PersonaKey]"
+                      cachedDataType="i4"
+                      cachedName="PersonaKey"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[PersonaKey]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Match Output].Columns[PersonaKey]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[TiempoKey]"
+                      cachedDataType="i4"
+                      cachedName="TiempoKey"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[TiempoKey]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Match Output].Columns[TiempoKey]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[UbicacionKey]"
+                      cachedDataType="i4"
+                      cachedName="UbicacionKey"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[UbicacionKey]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Match Output].Columns[UbicacionKey]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[EducacionKey]"
+                      cachedDataType="i2"
+                      cachedName="EducacionKey"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[EducacionKey]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Match Output].Columns[EducacionKey]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[SituacionLaboralKey]"
+                      cachedDataType="i2"
+                      cachedName="SituacionLaboralKey"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[SituacionLaboralKey]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Match Output].Columns[SituacionLaboralKey]" />
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].Columns[IdObservacion]"
+                      cachedDataType="i8"
+                      cachedName="IdObservacion"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[IdObservacionOrigen]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdObservacion]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[ObservacionKey]"
+                      dataType="i8"
+                      name="ObservacionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[IdObservacionOrigen]"
+                      dataType="i8"
+                      name="IdObservacionOrigen" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[PersonaKey]"
+                      dataType="i4"
+                      name="PersonaKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[TiempoKey]"
+                      dataType="i4"
+                      name="TiempoKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[UbicacionKey]"
+                      dataType="i4"
+                      name="UbicacionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[EducacionKey]"
+                      dataType="i2"
+                      name="EducacionKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[SituacionLaboralKey]"
+                      dataType="i2"
+                      name="SituacionLaboralKey" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[IngresoMensual]"
+                      dataType="numeric"
+                      name="IngresoMensual"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[GastoMensual]"
+                      dataType="numeric"
+                      name="GastoMensual"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[BalanceMensual]"
+                      dataType="numeric"
+                      name="BalanceMensual"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[CantidadObservaciones]"
+                      dataType="i4"
+                      name="CantidadObservaciones" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input].ExternalColumns[FechaCarga]"
+                      dataType="dbTimeStamp2"
+                      name="FechaCarga" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DimEducacion"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    NivelEducativo,
+    EducacionKey
+FROM dw.DimEducacion;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    NivelEducativo,
+    EducacionKey
+FROM dw.DimEducacion;) [refTable]
+where [refTable].[NivelEducativo] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="NivelEducativo" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="EducacionKey" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[NivelEducativo]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Inputs[Lookup Input].Columns[NivelEducativo]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="NivelEducativo"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[NivelEducativo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">NivelEducativo</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Match Output].Columns[EducacionKey]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Match Output].Columns[EducacionKey]"
+                      name="EducacionKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">EducacionKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DimPersona"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    IdPersonaOrigen,
+    PersonaKey
+FROM dw.DimPersona;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    IdPersonaOrigen,
+    PersonaKey
+FROM dw.DimPersona;) [refTable]
+where [refTable].[IdPersonaOrigen] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdPersonaOrigen" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PersonaKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdPersona]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Inputs[Lookup Input].Columns[IdPersona]"
+                      cachedDataType="i8"
+                      cachedName="IdPersona"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdPersona]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdPersonaOrigen</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Match Output].Columns[PersonaKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Match Output].Columns[PersonaKey]"
+                      name="PersonaKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PersonaKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DimSituacionLaboral"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    SituacionLaboral,
+    SituacionLaboralKey
+FROM dw.DimSituacionLaboral;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    SituacionLaboral,
+    SituacionLaboralKey
+FROM dw.DimSituacionLaboral;) [refTable]
+where [refTable].[SituacionLaboral] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="SituacionLaboral" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SituacionLaboralKey" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[SituacionLaboral]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Inputs[Lookup Input].Columns[SituacionLaboral]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="SituacionLaboral"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[SituacionLaboral]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">SituacionLaboral</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Match Output].Columns[SituacionLaboralKey]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Match Output].Columns[SituacionLaboralKey]"
+                      name="SituacionLaboralKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">SituacionLaboralKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DimTiempo"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    Fecha,
+    TiempoKey
+FROM dw.DimTiempo;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    Fecha,
+    TiempoKey
+FROM dw.DimTiempo;) [refTable]
+where [refTable].[Fecha] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Fecha" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TiempoKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[FechaEncuesta]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Inputs[Lookup Input].Columns[FechaEncuesta]"
+                      cachedDataType="dbDate"
+                      cachedName="FechaEncuesta"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[FechaEncuesta]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Fecha</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Match Output].Columns[TiempoKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Match Output].Columns[TiempoKey]"
+                      name="TiempoKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TiempoKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_DimUbicacion"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    CodigoDepartamento,
+    CodigoMunicipio,
+    UbicacionKey
+FROM dw.DimUbicacion;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    CodigoDepartamento,
+    CodigoMunicipio,
+    UbicacionKey
+FROM dw.DimUbicacion;) [refTable]
+where [refTable].[CodigoDepartamento] = ? and [refTable].[CodigoMunicipio] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CodigoDepartamento" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CodigoMunicipio" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="UbicacionKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoDepartamento]};#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoMunicipio]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input].Columns[CodigoDepartamento]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="CodigoDepartamento"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoDepartamento]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CodigoDepartamento</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input].Columns[CodigoMunicipio]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="CodigoMunicipio"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoMunicipio]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CodigoMunicipio</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Match Output].Columns[UbicacionKey]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Match Output].Columns[UbicacionKey]"
+                      name="UbicacionKey"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">UbicacionKey</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_FactObservacion_Existente"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    IdObservacionOrigen
+FROM dw.FactObservacion;</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT
+    IdObservacionOrigen
+FROM dw.FactObservacion;) [refTable]
+where [refTable].[IdObservacionOrigen] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="IdObservacionOrigen" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdObservacion]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Inputs[Lookup Input].Columns[IdObservacion]"
+                      cachedDataType="i8"
+                      cachedName="IdObservacion"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdObservacion]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">IdObservacionOrigen</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC_Datos_Depurados"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    IdObservacion,
+    IdPersona,
+    FechaEncuesta,
+    CodigoDepartamento,
+    CodigoMunicipio,
+    NivelEducativo,
+    SituacionLaboral,
+    IngresoMensual,
+    GastoMensual,
+    BalanceMensual
+FROM PersonasETL.modelo.vw_DatosDepuradosDW;</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  connectionManagerRefId="Package.ConnectionManagers[CM_SQL_PersonasDW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdObservacion]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[IdObservacion]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdObservacion]"
+                      name="IdObservacion"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdPersona]"
+                      dataType="i8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[IdPersona]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IdPersona]"
+                      name="IdPersona"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[FechaEncuesta]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[FechaEncuesta]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[FechaEncuesta]"
+                      name="FechaEncuesta"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoDepartamento]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[CodigoDepartamento]"
+                      length="30"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoDepartamento]"
+                      name="CodigoDepartamento"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoMunicipio]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[CodigoMunicipio]"
+                      length="30"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[CodigoMunicipio]"
+                      name="CodigoMunicipio"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[NivelEducativo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[NivelEducativo]"
+                      length="100"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[NivelEducativo]"
+                      name="NivelEducativo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[SituacionLaboral]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[SituacionLaboral]"
+                      length="100"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[SituacionLaboral]"
+                      name="SituacionLaboral"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IngresoMensual]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[IngresoMensual]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[IngresoMensual]"
+                      name="IngresoMensual"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[GastoMensual]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[GastoMensual]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[GastoMensual]"
+                      name="GastoMensual"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[BalanceMensual]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[BalanceMensual]"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].Columns[BalanceMensual]"
+                      name="BalanceMensual"
+                      precision="19"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[IdObservacion]"
+                      dataType="i8"
+                      name="IdObservacion" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[IdPersona]"
+                      dataType="i8"
+                      name="IdPersona" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[FechaEncuesta]"
+                      dataType="dbDate"
+                      name="FechaEncuesta" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[CodigoDepartamento]"
+                      dataType="wstr"
+                      length="30"
+                      name="CodigoDepartamento" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[CodigoMunicipio]"
+                      dataType="wstr"
+                      length="30"
+                      name="CodigoMunicipio" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[NivelEducativo]"
+                      dataType="wstr"
+                      length="100"
+                      name="NivelEducativo" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[SituacionLaboral]"
+                      dataType="wstr"
+                      length="100"
+                      name="SituacionLaboral" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[IngresoMensual]"
+                      dataType="numeric"
+                      name="IngresoMensual"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[GastoMensual]"
+                      dataType="numeric"
+                      name="GastoMensual"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output].ExternalColumns[BalanceMensual]"
+                      dataType="numeric"
+                      name="BalanceMensual"
+                      precision="19"
+                      scale="2" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[IdObservacion]"
+                      dataType="i8"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[IdObservacion]"
+                      name="IdObservacion" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[IdPersona]"
+                      dataType="i8"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[IdPersona]"
+                      name="IdPersona" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[FechaEncuesta]"
+                      dataType="dbDate"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[FechaEncuesta]"
+                      name="FechaEncuesta" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[CodigoDepartamento]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[CodigoDepartamento]"
+                      name="CodigoDepartamento" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[CodigoMunicipio]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[CodigoMunicipio]"
+                      name="CodigoMunicipio" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[NivelEducativo]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[NivelEducativo]"
+                      name="NivelEducativo" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[SituacionLaboral]"
+                      dataType="wstr"
+                      length="100"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[SituacionLaboral]"
+                      name="SituacionLaboral" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[IngresoMensual]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[IngresoMensual]"
+                      name="IngresoMensual"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[GastoMensual]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[GastoMensual]"
+                      name="GastoMensual"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[BalanceMensual]"
+                      dataType="numeric"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[BalanceMensual]"
+                      name="BalanceMensual"
+                      precision="19"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output1]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output2]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output3]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output4]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup No Match Output]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[OLE DB Source Output]"
+              endId="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_00_Carga_DW_Respaldo"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:Disabled="True"
+      DTS:DTSID="{81D564F1-7047-42FB-9361-C1194B3CB4D4}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_00_Carga_DW_Respaldo"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="2">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+          SQLTask:SqlStatementSource="EXEC dw.usp_CargarDW;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_02_Cargar_DimPersona"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Carga idempotente de DimPersona"
+      DTS:DTSID="{DF875393-0296-4F51-B452-A6D9B87576D3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_02_Cargar_DimPersona"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+          SQLTask:SqlStatementSource="INSERT dw.DimPersona(IdPersonaOrigen,TipoDocumento,NumeroDocumento,FechaNacimiento) SELECT DISTINCT v.IdPersona,v.TipoDocumento,v.NumeroDocumento,v.FechaNacimiento FROM PersonasETL.modelo.vw_DatosDepuradosDW v WHERE NOT EXISTS (SELECT 1 FROM dw.DimPersona d WHERE d.IdPersonaOrigen=v.IdPersona);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_03_Cargar_DimUbicacion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Carga idempotente de DimUbicacion"
+      DTS:DTSID="{A0CB6D42-2DF0-4B3D-AC23-B5B400D9CDC7}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_03_Cargar_DimUbicacion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+          SQLTask:SqlStatementSource="INSERT dw.DimUbicacion(CodigoDepartamento,Departamento,CodigoMunicipio,Municipio) SELECT DISTINCT v.CodigoDepartamento,v.Departamento,v.CodigoMunicipio,v.Municipio FROM PersonasETL.modelo.vw_DatosDepuradosDW v WHERE NOT EXISTS (SELECT 1 FROM dw.DimUbicacion d WHERE d.CodigoDepartamento=v.CodigoDepartamento AND d.CodigoMunicipio=v.CodigoMunicipio);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_04_Cargar_DimEducacion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Carga idempotente de DimEducacion"
+      DTS:DTSID="{D88DC589-7D30-4628-9754-CE2AE49AF75A}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_04_Cargar_DimEducacion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+          SQLTask:SqlStatementSource="INSERT dw.DimEducacion(NivelEducativo) SELECT DISTINCT v.NivelEducativo FROM PersonasETL.modelo.vw_DatosDepuradosDW v WHERE NOT EXISTS (SELECT 1 FROM dw.DimEducacion d WHERE d.NivelEducativo=v.NivelEducativo);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_05_Cargar_DimSituacionLaboral"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Carga idempotente de DimSituacionLaboral"
+      DTS:DTSID="{293EAC4C-3E31-4B67-9C90-4B35BA981496}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_05_Cargar_DimSituacionLaboral"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+          SQLTask:SqlStatementSource="INSERT dw.DimSituacionLaboral(SituacionLaboral) SELECT DISTINCT v.SituacionLaboral FROM PersonasETL.modelo.vw_DatosDepuradosDW v WHERE NOT EXISTS (SELECT 1 FROM dw.DimSituacionLaboral d WHERE d.SituacionLaboral=v.SituacionLaboral);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SQL_06_Cargar_FactObservacion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Carga idempotente de hechos resolviendo claves sustitutas"
+      DTS:Disabled="True"
+      DTS:DTSID="{9C5C314D-489B-4071-B211-83399F5A1AB3}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SQL_06_Cargar_FactObservacion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2025; © 2025 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{69D03D23-B900-44F4-857D-32B1C77AE98B}"
+          SQLTask:SqlStatementSource="INSERT dw.FactObservacion(IdObservacionOrigen,PersonaKey,TiempoKey,UbicacionKey,EducacionKey,SituacionLaboralKey,IngresoMensual,GastoMensual,BalanceMensual,CantidadObservaciones) SELECT v.IdObservacion,p.PersonaKey,t.TiempoKey,u.UbicacionKey,e.EducacionKey,s.SituacionLaboralKey,v.IngresoMensual,v.GastoMensual,v.BalanceMensual,1 FROM PersonasETL.modelo.vw_DatosDepuradosDW v JOIN dw.DimPersona p ON p.IdPersonaOrigen=v.IdPersona JOIN dw.DimTiempo t ON t.Fecha=v.FechaEncuesta JOIN dw.DimUbicacion u ON u.CodigoDepartamento=v.CodigoDepartamento AND u.CodigoMunicipio=v.CodigoMunicipio JOIN dw.DimEducacion e ON e.NivelEducativo=v.NivelEducativo JOIN dw.DimSituacionLaboral s ON s.SituacionLaboral=v.SituacionLaboral WHERE NOT EXISTS (SELECT 1 FROM dw.FactObservacion f WHERE f.IdObservacionOrigen=v.IdObservacion);" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción]"
+      DTS:CreationName=""
+      DTS:DTSID="{FC109BE6-660C-4D94-86A5-58D50697A77A}"
+      DTS:From="Package\DFT_01_Cargar_DimTiempo"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción"
+      DTS:To="Package\SQL_02_Cargar_DimPersona" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{DA90EE48-7E9A-4800-9DF3-B6DB7F24E63E}"
+      DTS:From="Package\SQL_02_Cargar_DimPersona"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 1"
+      DTS:To="Package\SQL_03_Cargar_DimUbicacion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{C200611D-357A-431D-AC6A-7DF76CCA6127}"
+      DTS:From="Package\SQL_03_Cargar_DimUbicacion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 2"
+      DTS:To="Package\SQL_04_Cargar_DimEducacion" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{A00EFFFD-C085-4F61-ACC4-1C806A1DB2A0}"
+      DTS:From="Package\SQL_04_Cargar_DimEducacion"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 3"
+      DTS:To="Package\SQL_05_Cargar_DimSituacionLaboral" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{1346542E-7E53-454D-BB72-A0BBB7F5C6D7}"
+      DTS:From="Package\SQL_05_Cargar_DimSituacionLaboral"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Restricción 4"
+      DTS:To="Package\DFT_06_Cargar_FactObservacion_Lookups" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="217.333333333334,42.6666666666667"
+          Id="Package\DFT_01_Cargar_DimTiempo"
+          TopLeft="72.1590876833283,80.8612431312983" />
+        <NodeLayout
+          Size="228,42.6666666666667"
+          Id="Package\SQL_00_Carga_DW_Respaldo"
+          TopLeft="5.5,5.50000000000004" />
+        <NodeLayout
+          Size="221.333333333334,42.6666666666667"
+          Id="Package\SQL_02_Cargar_DimPersona"
+          TopLeft="73.8636330616746,148.038275886531" />
+        <NodeLayout
+          Size="228,42.6666666666667"
+          Id="Package\SQL_03_Cargar_DimUbicacion"
+          TopLeft="76.6666632123066,221.786281569503" />
+        <NodeLayout
+          Size="232,42.6666666666667"
+          Id="Package\SQL_04_Cargar_DimEducacion"
+          TopLeft="73.2575724556141,288.72408023694" />
+        <NodeLayout
+          Size="261.333333333334,42.6666666666667"
+          Id="Package\SQL_05_Cargar_DimSituacionLaboral"
+          TopLeft="55.8062745344491,354.406468334847" />
+        <NodeLayout
+          Size="242.666666666667,42.6666666666667"
+          Id="Package\SQL_06_Cargar_FactObservacion"
+          TopLeft="371.066000700981,344.944177030276" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción]"
+          TopLeft="182.678027039168,123.527909797965">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.5103660885657"
+              Start="0,0"
+              End="0,17.0103660885657">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.0103660885657" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 1]"
+          TopLeft="187.598481470324,190.704942553197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,31.0813390163054"
+              Start="0,0"
+              End="0,23.5813390163054">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23.5813390163054" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 2]"
+          TopLeft="189.96211783396,264.452948236169">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,24.2711320007706"
+              Start="0,0"
+              End="0,16.7711320007706">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.7711320007706" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 3]"
+          TopLeft="187.865256828365,331.390746903607">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,23.0157214312408"
+              Start="0,0"
+              End="0,15.5157214312408">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,15.5157214312408" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="289.333333333334,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups"
+          TopLeft="42.8571409412794,436.917288435817" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Restricción 4]"
+          TopLeft="186.998374404531,397.073135001514">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39.844153434303"
+              Start="0,0"
+              End="0,32.344153434303">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.344153434303" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT_01_Cargar_DimTiempo">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="200.666666666667,42.6666666666667"
+          Id="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas"
+          TopLeft="143.749993573874,54.7368415042635" />
+        <NodeLayout
+          Size="161.333333333334,42.6666666666667"
+          Id="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo"
+          TopLeft="159.374992875383,133.421051166642" />
+        <EdgeLayout
+          Id="Package\DFT_01_Cargar_DimTiempo.Paths[OLE DB Source Output]"
+          TopLeft="242.062493224628,97.4035081709301">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,36.017542995712"
+              Start="0,0"
+              End="0,28.517542995712">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.517542995712" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_01_Cargar_DimTiempo\DST_DimTiempo">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_01_Cargar_DimTiempo\SRC_Fechas_Depuradas">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="194.666666666667,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados"
+          TopLeft="179.999991953373,73.2105255119524" />
+        <NodeLayout
+          Size="164,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona"
+          TopLeft="191.249991450459,159.421050881167" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[OLE DB Source Output]"
+          TopLeft="275.291658368583,115.877192178619">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.5438587025482"
+              Start="0,0"
+              End="0,36.0438587025482">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.0438587025482" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="160,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo"
+          TopLeft="186.874991646037,242.719295939278" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output]"
+          TopLeft="270.062491548248,202.087717547834">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.6315783914437"
+              Start="0,0"
+              End="0,33.1315783914437">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.1315783914437" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.7611016957218,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion"
+          TopLeft="184.999991729856,318.122804681157" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output1]"
+          TopLeft="268.937491687946,285.385962605944">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,32.7368420752131"
+              Start="0,0"
+              End="0,25.2368420752131">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.2368420752131" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,6.81373353760657,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="174.666666666667,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion"
+          TopLeft="183.749991785735,389.543857560649" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output2]"
+          TopLeft="271.041658424462,360.789471347824">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28.7543862128247"
+              Start="0,0"
+              End="0,21.2543862128247">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,21.2543862128247" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.82250560641236,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="204,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral"
+          TopLeft="161.249992791564,459.999997716201" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output3]"
+          TopLeft="267.166658955316,432.210524227316">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,27.7894734888856"
+              Start="0,0"
+              End="0,20.2894734888856">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.2894734888856" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,4.34004924444278,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="236,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente"
+          TopLeft="146.874993434176,542.877190608507" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup Match Output4]"
+          TopLeft="264.06249311287,502.666664382868">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,40.2105262256397"
+              Start="0,0"
+              End="0,32.7105262256397">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.7105262256397" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,10.5505756128198,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="188,42.6666666666667"
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion"
+          TopLeft="175.624992148951,628.929822164917" />
+        <EdgeLayout
+          Id="Package\DFT_06_Cargar_FactObservacion_Lookups.Paths[Lookup No Match Output]"
+          TopLeft="267.249992791564,585.543857275174">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,43.3859648897433"
+              Start="0,0"
+              End="0,35.8859648897433">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.8859648897433" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,12.1382949448716,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\SRC_Datos_Depurados">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimPersona">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimTiempo">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimUbicacion">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimEducacion">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_DimSituacionLaboral">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\LKP_FactObservacion_Existente">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT_06_Cargar_FactObservacion_Lookups\DST_FactObservacion">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
